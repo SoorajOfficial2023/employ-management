@@ -32,44 +32,44 @@ def add_employ():
 def delete_employ():
     clear()
     flag = 0
-    while flag == 0:
-        try:
-            id_no = int(input('enter the ID number to remove: '))
-            for i in employee:
-                if i['id_no'] == id_no:
-                    employee.remove(i)
-                    print(f"{id_no} deleted")
-                    flag = 1
-                    break
-                else:
-                    print(f"{id_no} not found")
-        except:
-            print('Invalid character')
+    try:
+        id_no = int(input('enter the ID number to remove: '))
+        for i in employee:
+            if i['id_no'] == id_no:
+                employee.remove(i)
+                print(f"{id_no} deleted")
+                flag = 1
+                break
+        if flag == 0:
+            print(f"{id_no} not found")
+    except:
+        print('Invalid character')
 
         
    
 def search_employ():
     clear()
     flag = 0
-    while flag == 0:
-        try:
-            id_no = int(input('enter the ID number to search: '))
-            for i in employee:
-                  if i['id_no'] == id_no:
-                        print(f"id_no : {i['id_no']}\nname : {i['name']}\nage : {i['age']}\njob : {i['job']}")
-                        flag = 1
-                        break
-                  else:
-                       print(f"{id_no} not found")
-        except:
-            print('Invalid character')
+   
+    try:
+        id_no = int(input('enter the ID number to search: '))
+        for i in employee:
+            if i['id_no'] == id_no:
+                print(f"id_no : {i['id_no']}\nname : {i['name']}\nage : {i['age']}\njob : {i['job']}")
+                flag = 1
+                break
+        if flag == 0:
+            print(f"{id_no} not found")
+    except:
+        print('Invalid character')
         
 def display_employ():
     clear()
-    for i in employee:
-        print(f"id_no : {i['id_no']}\nname : {i['name']}\nage : {i['age']}\njob : {i['job']}")
-        if i not in employee:
-            print('No data')        
+    if not employee:
+        print('No data')
+    else:
+        for i in employee:
+            print(f"id_no : {i['id_no']}\nname : {i['name']}\nage : {i['age']}\njob : {i['job']}")       
 
 
 def main():
@@ -99,8 +99,8 @@ def main():
                 break
             else:
                 print('Choose correct option') 
-        except:
-            print('ValueError')
+        except ValueError as e:
+            print(f"Error: {e}")
             
             
 
